@@ -13,7 +13,7 @@ This project was generated with Python 3 and Docker.
 1. Relogin for the user to gain access to Docker.
 1. Make a local copy of the application code found on [GitHub][github] by `git clone https://github.com/JohnRTurner/h3hexagon.git`
 1. Build the Docker image `docker build h3hexagon -t h3hexagon`
-1. Run the Image `docker run -d --name h3hexagon -e KAFKA_SERVER=$(hostname):29092 -e BATCH_SIZE=1000 -e KAFKA_TOPIC=h3hexagon -e PROC_COUNT=8 -t h3hexagon`
+1. Run the Image ` docker run -d --name h3hexagon -e KAFKA_SERVER=$(hostname):29092 -e KAFKA_TOPIC=h3hexagon -e RESOLUTION=7 -t h3hexagon`
 1. View the logs `docker logs -f h3hexagon`
 1. Proceed to loading the data [SingleStore Setup][singlestoresetup]
 

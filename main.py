@@ -72,6 +72,7 @@ def h3dumpjson(producer, maxResolution, resolution=0, cell=None, cells=[]):
         o["polygon"] = poly_str(itm)
         #print(dumps(o).encode('utf-8'))
         producer.produce(topic, value=dumps(o).encode('utf-8'), callback=acked)
+    producer.flush()
 
 
 
