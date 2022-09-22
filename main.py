@@ -78,11 +78,11 @@ def h3dumpjson(producer, maxResolution, resolution=0, cell=None, cells=[]):
 
 
 
-def mp_func( thrd):
+def mp_func( thrd, tst):
   return produce_events( thrd)
 
 if __name__ == '__main__':
   print('Start...')
   mp.freeze_support()
   process_pool = mp.Pool(processes = process_count)
-  process_pool.starmap( mp_func,  [(thrd) for thrd in range(process_count)]  )
+  process_pool.starmap( mp_func,  [(thrd, 'test') for thrd in range(process_count)]  )
