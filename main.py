@@ -69,6 +69,7 @@ def h3dumpjson(producer, maxResolution, resolution=0, cell=None, cells=[]):
         o =  { "cell":itm, "resolution":resolution }
         for lvl in range(0, resolution):
             o["hier_" + str(lvl)] = cells[lvl]
+        o["hier_" + str(resolution)] = itm
         o["polygon"] = poly_str(itm)
         #print(dumps(o).encode('utf-8'))
         producer.produce(topic, value=dumps(o).encode('utf-8'), callback=acked)

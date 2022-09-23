@@ -83,7 +83,7 @@ docker exec -it ubuntu_kafka-1_1 kafka-topics  --bootstrap-server localhost:2909
 ### Delete Kafka Topic
 ```
 docker exec -it ubuntu_kafka-1_1 kafka-topics  --bootstrap-server localhost:29092,localhost:29093,localhost:29094,localhost:29095 --delete --topic h3hexagon 
-h3hexagon
+```
 ### Get Topic Size
 ```
 kafkacat -C -b localhost:29092,localhost:29093,localhost:29094,localhost:29095 -t h3hexagon -o beginning -e -q| wc -l
