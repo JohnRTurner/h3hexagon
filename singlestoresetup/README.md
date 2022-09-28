@@ -15,9 +15,17 @@ Create the database.
 create database h3hexagon;
 use h3hexagon;
 ```
-Create the table
+Create the tables - Note: Make sure there is enough memory for rowstore table.
 ```
 CREATE rowstore TABLE h3data (
+   cell TEXT NOT NULL,
+   resolution int NOT NULL, 
+   polygon GEOGRAPHY NOT NULL,
+   primary key (cell),
+   key (polygon)
+);
+
+CREATE TABLE h3full (
    cell TEXT NOT NULL,
    resolution as detail::%resolution persisted int NOT NULL, 
    hier_0 as detail::$hier_0 persisted TEXT, 
@@ -34,28 +42,37 @@ CREATE rowstore TABLE h3data (
    polygon as detail::$polygon persisted TEXT,
    polygon_GEO GEOGRAPHY,
    detail JSON NOT NULL,
-   primary key (cell),
-   key (polygon)
+   shard key (cell),
+   sort key (cell)
 );
 ```
-Create the pipeline
+Create the pipelines
 ```
 CREATE PIPELINE h3data_pipeline
   AS LOAD DATA KAFKA 'ec2-34-229-112-56.compute-1.amazonaws.com:29095/h3hexagon'
-  skip duplicate key errors
+  SKIP CONSTRAINT ERRORS
   INTO TABLE h3data
   FORMAT JSON
-  ( cell <- cell,
-    detail <- %
-  );
+  ( cell <- cell,  resolution <- resolution, polygon <- polygon  );
+
+CREATE PIPELINE h3full_pipeline
+  AS LOAD DATA KAFKA 'ec2-34-229-112-56.compute-1.amazonaws.com:29095/h3hexagon'
+  SKIP CONSTRAINT ERRORS
+  INTO TABLE h3full
+  FORMAT JSON
+  ( cell <- cell,  detail <-  % );
 ```
-Test the Pipeline
+Test the Pipelines
 ```
 test pipeline h3data_pipeline;
+
+test pipeline h3full_pipeline;
 ```
-Start the Pipeline
+Start the Pipelines
 ```
 start pipeline h3data_pipeline;
+
+start pipeline h3full_pipeline;
 ```
 Check Pipeline Progress
 ```
@@ -65,6 +82,15 @@ select round(max(time_to_sec(start_time) + batch_time) - min(time_to_sec(start_t
        round((time_to_sec(current_timestamp) - max(time_to_sec(start_time) + batch_time)) + 1) secondssinceupdate
    from information_schema.PIPELINES_BATCHES_SUMMARY 
    where pipeline_name = 'h3data_pipeline' 
+     and batch_state in ('Succeeded', 'In Progress') 
+     and num_partitions > 0;
+
+select round(max(time_to_sec(start_time) + batch_time) - min(time_to_sec(start_time))) seconds,
+       sum(rows_streamed) rows,
+       sum(rows_streamed) / round(max(time_to_sec(start_time) + batch_time) - min(time_to_sec(start_time))) rowspersecond,
+       round((time_to_sec(current_timestamp) - max(time_to_sec(start_time) + batch_time)) + 1) secondssinceupdate
+   from information_schema.PIPELINES_BATCHES_SUMMARY 
+   where pipeline_name = 'h3full_pipeline' 
      and batch_state in ('Succeeded', 'In Progress') 
      and num_partitions > 0;
 ```
