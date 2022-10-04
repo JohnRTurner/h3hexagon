@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="302e5994-7541-4d41-ac7c-2395860ad9e4" name="Changes" comment="Updated Database Scripts">
+    <list default="true" id="302e5994-7541-4d41-ac7c-2395860ad9e4" name="Changes" comment="added geo_* to the json output.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/h3csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/h3csv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +132,7 @@
       <workItem from="1664373179042" duration="138000" />
       <workItem from="1664373333676" duration="1866000" />
       <workItem from="1664392742211" duration="1059000" />
-      <workItem from="1664397712786" duration="8127000" />
+      <workItem from="1664397712786" duration="9035000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Push">
       <created>1663864329737</created>
@@ -177,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664390056022</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added geo_* to the json output.">
+      <created>1664848838264</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1664848838264</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,7 +208,8 @@
     <MESSAGE value="Added a flush for Kafka" />
     <MESSAGE value="Added current node to hierarchy, updated docs" />
     <MESSAGE value="Updated Database Scripts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Database Scripts" />
+    <MESSAGE value="added geo_* to the json output." />
+    <option name="LAST_COMMIT_MESSAGE" value="added geo_* to the json output." />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
