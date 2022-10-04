@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="302e5994-7541-4d41-ac7c-2395860ad9e4" name="Changes" comment="Added current node to hierarchy, updated docs">
+    <list default="true" id="302e5994-7541-4d41-ac7c-2395860ad9e4" name="Changes" comment="Updated Database Scripts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/singlestoresetup/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/singlestoresetup/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/h3csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/h3csv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +69,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.h3csv">
     <configuration name="h3csv" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="h3hexagon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -115,8 +116,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main" />
         <item itemvalue="Python.h3csv" />
+        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -130,7 +131,9 @@
       <updated>1663767348634</updated>
       <workItem from="1663767351067" duration="23328000" />
       <workItem from="1664373179042" duration="138000" />
-      <workItem from="1664373333676" duration="864000" />
+      <workItem from="1664373333676" duration="1866000" />
+      <workItem from="1664392742211" duration="1059000" />
+      <workItem from="1664397712786" duration="8127000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Push">
       <created>1663864329737</created>
@@ -167,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663945625859</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Updated Database Scripts">
+      <created>1664390056022</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1664390056022</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -191,12 +201,14 @@
     <MESSAGE value="Circumvented starmap issue." />
     <MESSAGE value="Added a flush for Kafka" />
     <MESSAGE value="Added current node to hierarchy, updated docs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added current node to hierarchy, updated docs" />
+    <MESSAGE value="Updated Database Scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Database Scripts" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/h3hexagon$h3csv.coverage" NAME="h3csv Coverage Results" MODIFIED="1664829560704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/h3hexagon$main.coverage" NAME="main Coverage Results" MODIFIED="1663871466686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/h3hexagon$printh3.coverage" NAME="h3csv Coverage Results" MODIFIED="1663859193557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

@@ -32,12 +32,11 @@ kafka_server  = str(args.kafka_server)
 #single threaded for first version
 process_count = 1
 
-def poly_str(cel):
+def poly_str(geo):
     #x = h3.cell_to_boundary(cel, True)
-    x = h3.h3_to_geo_boundary(cel, True)
     ret = "POLYGON(("
     first = True
-    for y in x:
+    for y in geo:
         if(first):
             ret += str(y[0]) + " " + str(y[1])
             first = False
@@ -54,23 +53,25 @@ def produce_events(thrd):
   h3dumpjson(producer, maxResolution)
   producer.flush()
 
-def h3dumpjson(producer, maxResolution, resolution=0, cell=None, cells=[]):
+def h3dumpjson(producer, maxResolution, resolution=0, cell=None, cells=[], geos=[]):
     global topic
     if(cell == None or resolution == 0):
         resolution = 0
-        cell = None
         cells=[]
+        geos=[]
         lst = sorted(h3.k_ring("8029fffffffffff", 9))
     else:
         lst = h3.h3_to_children(cell, resolution)
     for itm in lst:
+        geo = h3.h3_to_geo_boundary(itm, True)
         if(resolution < maxResolution):
-            h3dumpjson(producer, maxResolution,resolution + 1, itm, cells + [itm])
+            h3dumpjson(producer, maxResolution,resolution + 1, itm, cells + [itm], geos + [geo])
         o =  { "cell":itm, "resolution":resolution }
         for lvl in range(0, resolution):
             o["hier_" + str(lvl)] = cells[lvl]
+            o["geo_" + str(lvl)] = geos[lvl]
         o["hier_" + str(resolution)] = itm
-        o["polygon"] = poly_str(itm)
+        o["polygon"] = poly_str(geo)
         #print(dumps(o).encode('utf-8'))
         producer.produce(topic, value=dumps(o).encode('utf-8'), callback=acked)
     producer.flush()

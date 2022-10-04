@@ -7,7 +7,7 @@ import csv
 import io
 import gzip
 
-from json import dumps
+from json import dumps, dump
 
 def poly_str(cel):
     #x = h3.cell_to_boundary(cel, True)
@@ -26,13 +26,19 @@ def poly_str(cel):
 ## Use this to print for a single point
 def h3printOne(lat, lng, resStart, resStop):
     #print ("POINT(",lng, lat, ")")
-    header = ['CELL','RESOLUTION','POLYGON']
+    header = ['CELL','RESOLUTION',
+              #'POLYGON',
+              'TEST']
     writer = csv.writer(sys.stdout)
     writer.writerow(header)
     for resolution in range(resStart, resStop + 1):
         #cel = h3.latlng_to_cell(lat, lng, resolution)
         cel = h3.geo_to_h3(lat, lng, resolution)
-        writer.writerow([cel, resolution, poly_str(cel)])
+        polyjson = dumps({ "type": "Polygon", "coordinates": [h3.h3_to_geo_boundary(cel, True)]}).replace('(','[').replace(')',']')
+        # polyjson = h3.h3_to_geo_boundary(cel, True)
+        writer.writerow([cel, resolution,
+                         #poly_str(cel),
+                         polyjson])
 
 ## Use this to print Everything
 def h3dumpcsvgzip(resolution):
@@ -89,8 +95,8 @@ if __name__ == '__main__':
     #print(h3.versions())
     #print(h3.__dict__.keys())
 
-    h3dumpcsvgzip(6)
-    #h3printOne(40.92289, -81.082317, 6, 8)
+    #h3dumpcsvgzip(6)
+    h3printOne(40.92289, -81.082317, 6, 8)
     #h3printjson(2)
 
     exit()
